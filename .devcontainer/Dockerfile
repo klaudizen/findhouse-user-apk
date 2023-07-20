@@ -1,2 +1,3 @@
-FROM ghcr.io/klaudizen/findhouse-devcontainer:2ef8353dd05983874adf2468204c9651e200a502
+FROM ghcr.io/klaudizen/findhouse-devcontainer:a914ba12fe2611745807539009410d5399a565b0
+
 ENV DEVCONTAINER="true"
