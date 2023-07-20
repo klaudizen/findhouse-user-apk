@@ -1,6 +1,6 @@
-name: Docker Image CI Latest 01
+name: Docker Image CI Latest
 
-on: create
+on: "create"
 jobs:
 
   build:
@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build --pull --rm -f "Image/Dockerfile" -t android-devcontainer:latest "Image"
+      run: docker build --pull --rm -f "Image/Dockerfile" -t findhouse-devcontainer:latest "Image"
     
     - name: Push docker image to ghcr.io
       uses: docker/login-action@v1

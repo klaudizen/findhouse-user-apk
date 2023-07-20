@@ -1,0 +1,25 @@
+name: Docker Image CI On Push 01
+
+on: "push"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build --pull --rm -f "Image/Dockerfile" -t findhouse-devcontainer:${{ github.sha }} "Image"
+    
+    - name: Push docker image to ghcr.io
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: klaudizen
+        password: ${{ secrets.GH_TOKEN }}
+        
+    - run: |
+        docker tag findhouse-devcontainer:${{ github.sha }} ghcr.io/klaudizen/findhouse-devcontainer:${{ github.sha }}
+        docker push ghcr.io/klaudizen/findhouse-devcontainer:${{ github.sha }}
