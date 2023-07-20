@@ -1,4 +1,4 @@
-name: Docker Image CI On Push 01
+name: Docker Image CI
 
 on: "push"
 
@@ -17,8 +17,9 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
-        username: klaudizen
-        password: ${{ secrets.GH_TOKEN }}
+        organization: klaudizen
+        username: ${{ github.actor }}
+        password: ${{ secrets.FN_GITHUB_TOKEN }}
         
     - run: |
         docker tag findhouse-devcontainer:${{ github.sha }} ghcr.io/klaudizen/findhouse-devcontainer:${{ github.sha }}
