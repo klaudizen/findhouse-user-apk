@@ -1,2 +1,2 @@
-FROM ghcr.io/klaudizen/findhouse-devcontainer:latest
+FROM ghcr.io/klaudizen/findhouse-devcontainer
 ENV DEVCONTAINER="true"
