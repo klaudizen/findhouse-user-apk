@@ -1,0 +1,24 @@
+name: Docker Image CI Latest 01
+
+on: create
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build --pull --rm -f "Image/Dockerfile" -t android-devcontainer:latest "Image"
+    
+    - name: Push docker image to ghcr.io
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: klaudizen
+        password: ${{ secrets.GH_TOKEN }}
+        
+    - run: |
+        docker tag findhouse-devcontainer:latest ghcr.io/klaudizen/findhouse-devcontainer:latest
+        docker push ghcr.io/klaudizen/findhouse-devcontainer:latest
